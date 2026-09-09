@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Enterprise Portal</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+            :root {
+                --sidebar-width: 250px;
+                --primary-color: #4f46e5;
+                --bg-body: #f8fafc;
+            }
+
+            body {
+                background-color: var(--bg-body);
+                font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            }
+
+            /* Custom Sidebar Layout */
+            .app-wrapper {
+                display: flex;
+                min-height: 100vh;
+            }
+
+            .app-sidebar {
+                width: var(--sidebar-width);
+                background: #1e293b;
+                color: #fff;
+                flex-shrink: 0;
+                padding: 1.5rem 1rem;
+            }
+
+            .app-sidebar .brand-title {
+                font-size: 1.25rem;
+                font-weight: 700;
+                color: #38bdf8;
+                margin-bottom: 2rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .sidebar-link {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 0.75rem 1rem;
+                color: #94a3b8;
+                text-decoration: none;
+                border-radius: 0.5rem;
+                font-weight: 500;
+                transition: all 0.2s ease;
+                margin-bottom: 0.25rem;
+            }
+
+            .sidebar-link:hover, .sidebar-link.active {
+                color: #fff;
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .app-content {
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .app-topbar {
+                background: #fff;
+                border-bottom: 1px solid #e2e8f0;
+                padding: 1rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .main-container {
+                padding: 2rem;
+            }
+    </style>
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Custom Sidebar -->
+        <aside class="app-sidebar">
+            <div class="brand-title">
+                <i class="bi bi-box-seam-fill"></i> HR Admin Portal
+            </div>
+
+            <nav>
+                <a asp-controller="Employee" asp-action="Index" class="sidebar-link active">
+                    <i class="bi bi-people-fill"></i> Employees Directory
+                </a>
+                <a asp-controller="Employee" asp-action="Create" class="sidebar-link">
+                    <i class="bi bi-person-plus-fill"></i> Add Employee
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Body -->
+        <div class="app-content">
+            <header class="app-topbar shadow-sm">
+                <h5 class="fw-bold mb-0 text-slate-700">Management Control Center</h5>
+                <div class="d-flex align-items-center gap-3">
+                    <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill fw-semibold">ASP.NET Core Tag Helpers</span>
+                </div>
+            </header>
+
+            <main class="main-container">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
